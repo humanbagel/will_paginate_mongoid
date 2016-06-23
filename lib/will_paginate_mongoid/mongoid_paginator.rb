@@ -8,9 +8,7 @@ module WillPaginateMongoid
       def self.paginate(options = {})
         options = base_options options
 
-        WillPaginate::Collection.create(options[:page], options[:per_page]) do |pager|
-          fill_pager_with self.skip(options[:offset]).limit(options[:per_page]), self.count, pager
-        end
+        self.skip(options[:offset]).limit(options[:per_page])
       end
 
 
@@ -25,11 +23,6 @@ module WillPaginateMongoid
         options[:per_page] ||= (WillPaginate.per_page || 10)
         options[:offset] = (options[:page].to_i - 1) * options[:per_page].to_i
         options
-      end
-
-      def self.fill_pager_with(medias, size, pager)
-        pager.replace medias
-        pager.total_entries = size
       end
     end
   end
