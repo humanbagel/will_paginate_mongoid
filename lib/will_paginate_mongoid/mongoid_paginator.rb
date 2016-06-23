@@ -22,6 +22,10 @@ module WillPaginateMongoid
         page_size + 1 if leftover > 0
       end
 
+      def current_page
+        (self.options[:skip] / self.options[:limit]) + 1
+      end
+
       private
 
       def self.base_options(options)
