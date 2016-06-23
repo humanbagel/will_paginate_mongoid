@@ -28,7 +28,7 @@ module WillPaginateMongoid
       end
 
       def self.fill_pager_with(medias, size, pager)
-        pager.replace medias.to_a
+        pager.replace medias
         pager.total_entries = size
       end
     end
