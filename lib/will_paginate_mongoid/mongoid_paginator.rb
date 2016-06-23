@@ -19,12 +19,11 @@ module WillPaginateMongoid
       def total_pages
         leftover = self.size % self.options[:limit]
         page_size = (self.size / self.options[:limit]).floor
-        byebug
-        page_size + 1 if leftover > 0
+        page_size += 1 if leftover > 0
+        page_size
       end
 
       def current_page
-        byebug
         (self.options[:skip] / self.options[:limit]) + 1
       end
 
