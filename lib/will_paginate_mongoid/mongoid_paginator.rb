@@ -31,6 +31,24 @@ module WillPaginateMongoid
         (self.options[:skip] / self.options[:limit]) + 1
       end
 
+      def next_page
+        page = if current_page < total_pages
+            current_page + 1
+          else
+            nil
+          end
+        page
+      end
+
+      def previous_page
+        page = if current_page > 1
+            current_page - 1
+          else
+            nil
+          end
+        page
+      end
+
       private
 
       def self.base_options(options)
