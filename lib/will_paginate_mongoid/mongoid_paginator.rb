@@ -16,6 +16,10 @@ module WillPaginateMongoid
         paginate({page: page})
       end
 
+      def total_entries
+        self.size
+      end
+
       def total_pages
         leftover = self.size % self.options[:limit]
         page_size = (self.size / self.options[:limit]).floor
